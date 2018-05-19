@@ -45,6 +45,11 @@ var
 
 implementation
 
+{$IFDEF CLIENTSERVER}
+uses
+    uDMServer;
+{$ENDIF}
+
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
@@ -53,13 +58,33 @@ implementation
 
 function TDMClient.mediaSalario: Currency;
 begin
+    {$IFDEF CLIENTSERVER}
+    Result := DMServer.mediaSalario;
+    {$ENDIF}
+    {$IFNDEF CLIENTSERVER}
     Result := DMServerClient.mediaSalario;
+    {$ENDIF}
 end;
 
 constructor TDMClient.Create(AOwner: TComponent);
+{$IFDEF CLIENTSERVER}
+var
+    cds: TClientDataSet;
+    I: Integer;
+{$ENDIF}
 begin
     inherited;
     FInstanceOwner := True;
+    {$IFDEF CLIENTSERVER}
+    for I := 0 to ComponentCount - 1 do
+    begin
+        if Components[I] is TClientDataSet then
+        begin
+            cds := Components[I] as TClientDataSet;
+            cds.RemoteServer := DMServer.conSimula3Camadas;
+        end;
+    end;
+    {$ENDIF}
 end;
 
 destructor TDMClient.Destroy;

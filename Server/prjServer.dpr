@@ -6,7 +6,7 @@ uses
   IdHTTPWebBrokerBridge,
   uFrmMain in 'uFrmMain.pas' {Form1},
   uSC in 'uSC.pas' {SC: TDataModule},
-  uDMServer in 'uDMServer.pas' {DMServer: TDataModule};
+  uDMServer in '..\DMServer\uDMServer.pas' {DMServer: TDSServerModule};
 
 {$R *.res}
 

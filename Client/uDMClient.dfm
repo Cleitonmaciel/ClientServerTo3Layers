@@ -94,14 +94,12 @@ object DMClient: TDMClient
       'Port=211'
       'CommunicationProtocol=tcp/ip'
       'DatasnapContext=datasnap/')
-    Connected = True
     Left = 48
     Top = 40
     UniqueId = '{5E3CE36C-434F-49FF-BC6C-2A2189B78429}'
   end
   object pconServer: TDSProviderConnection
     ServerClassName = 'TDMServer'
-    Connected = True
     SQLConnection = conServer
     Left = 48
     Top = 104

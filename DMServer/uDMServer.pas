@@ -27,6 +27,7 @@ type
         dspAUX: TDataSetProvider;
         qryMediaSalario: TSQLQuery;
         fldMediaSalarioMEDIA_SALARIO: TFMTBCDField;
+    conSimula3Camadas: TLocalConnection;
     private
     { Private declarations }
     public

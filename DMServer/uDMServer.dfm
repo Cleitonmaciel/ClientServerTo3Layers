@@ -163,4 +163,8 @@ object DMServer: TDMServer
       Size = 2
     end
   end
+  object conSimula3Camadas: TLocalConnection
+    Left = 368
+    Top = 88
+  end
 end
