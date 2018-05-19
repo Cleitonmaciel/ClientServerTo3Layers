@@ -5,7 +5,7 @@ interface
 uses
     System.SysUtils, System.Classes, Data.DBXFirebird, Data.FMTBcd, Data.DB,
     Data.SqlExpr, Datasnap.DBClient, Datasnap.Provider, Data.DbxDatasnap, Data.DBXCommon,
-    IPPeerClient, Datasnap.DSConnect;
+    IPPeerClient, Datasnap.DSConnect, uCC;
 
 type
     TDMClient = class(TDataModule)
@@ -26,18 +26,24 @@ type
         pconServer: TDSProviderConnection;
     private
     { Private declarations }
+    // Client Module
+        FInstanceOwner: Boolean;
+        FDMServerClient: TDMServerClient;
+        function GetDMServerClient: TDMServerClient;
     public
     { Public declarations }
         function mediaSalario: Currency;
+        // Client Module
+        constructor Create(AOwner: TComponent); override;
+        destructor Destroy; override;
+        property InstanceOwner: Boolean read FInstanceOwner write FInstanceOwner;
+        property DMServerClient: TDMServerClient read GetDMServerClient write FDMServerClient;
     end;
 
 var
     DMClient: TDMClient;
 
 implementation
-
-//uses
-//    uDMServer;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
@@ -47,7 +53,29 @@ implementation
 
 function TDMClient.mediaSalario: Currency;
 begin
-//    Result := DMServer.mediaSalario;
+    Result := DMServerClient.mediaSalario;
+end;
+
+constructor TDMClient.Create(AOwner: TComponent);
+begin
+    inherited;
+    FInstanceOwner := True;
+end;
+
+destructor TDMClient.Destroy;
+begin
+    FDMServerClient.Free;
+    inherited;
+end;
+
+function TDMClient.GetDMServerClient: TDMServerClient;
+begin
+    if FDMServerClient = nil then
+    begin
+        conServer.Open;
+        FDMServerClient := TDMServerClient.Create(conServer.DBXConnection, FInstanceOwner);
+    end;
+    Result := FDMServerClient;
 end;
 
 end.

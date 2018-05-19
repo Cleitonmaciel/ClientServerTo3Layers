@@ -6,7 +6,8 @@ uses
   uFrmMain in 'uFrmMain.pas' {FrmMain},
   uDMClient in 'uDMClient.pas' {DMClient: TDataModule},
   uFrmEmployee in 'uFrmEmployee.pas' {FrmEmployee},
-  uFrmEditEmployee in 'uFrmEditEmployee.pas' {FrmEditEmployee};
+  uFrmEditEmployee in 'uFrmEditEmployee.pas' {FrmEditEmployee},
+  uCC in 'uCC.pas';
 
 {$R *.res}
 
