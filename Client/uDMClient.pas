@@ -4,7 +4,8 @@ interface
 
 uses
     System.SysUtils, System.Classes, Data.DBXFirebird, Data.FMTBcd, Data.DB,
-    Data.SqlExpr, Datasnap.DBClient, Datasnap.Provider;
+    Data.SqlExpr, Datasnap.DBClient, Datasnap.Provider, Data.DbxDatasnap, Data.DBXCommon,
+    IPPeerClient, Datasnap.DSConnect;
 
 type
     TDMClient = class(TDataModule)
@@ -21,6 +22,8 @@ type
         cdsEMPLOYEEJOB_COUNTRY: TStringField;
         cdsEMPLOYEESALARY: TFMTBCDField;
         cdsEMPLOYEEFULL_NAME: TStringField;
+        conServer: TSQLConnection;
+        pconServer: TDSProviderConnection;
     private
     { Private declarations }
     public
@@ -33,8 +36,8 @@ var
 
 implementation
 
-uses
-    uDMServer;
+//uses
+//    uDMServer;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
@@ -44,7 +47,7 @@ uses
 
 function TDMClient.mediaSalario: Currency;
 begin
-    Result := DMServer.mediaSalario;
+//    Result := DMServer.mediaSalario;
 end;
 
 end.

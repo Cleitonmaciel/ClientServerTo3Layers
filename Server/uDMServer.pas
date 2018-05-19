@@ -4,10 +4,11 @@ interface
 
 uses
     System.SysUtils, System.Classes, Data.DBXFirebird, Data.FMTBcd, Data.SqlExpr,
-    Datasnap.Provider, Data.DB, Datasnap.DBClient, Datasnap.Win.TConnect;
+    Datasnap.Provider, Data.DB, Datasnap.DBClient, Datasnap.Win.TConnect,
+    DataSnap.DSProviderDataModuleAdapter, Datasnap.DSServer, Datasnap.DSAuth;
 
 type
-    TDMServer = class(TDataModule)
+    TDMServer = class(TDSServerModule)
         conEMPLOYEE: TSQLConnection;
         dtsEMPLOYEE: TSQLDataSet;
         dtsEMPLOYEEEMP_NO: TSmallintField;
@@ -26,7 +27,6 @@ type
         dspAUX: TDataSetProvider;
         qryMediaSalario: TSQLQuery;
         fldMediaSalarioMEDIA_SALARIO: TFMTBCDField;
-        conSimulaServidor: TLocalConnection;
     private
     { Private declarations }
     public

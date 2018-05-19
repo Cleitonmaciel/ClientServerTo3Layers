@@ -1,7 +1,7 @@
 object DMClient: TDMClient
   OldCreateOrder = False
-  Height = 279
-  Width = 478
+  Height = 220
+  Width = 450
   object cdsEMPLOYEE: TClientDataSet
     Aggregates = <>
     Params = <
@@ -11,8 +11,8 @@ object DMClient: TDMClient
         ParamType = ptInput
       end>
     ProviderName = 'dspEMPLOYEE'
-    RemoteServer = DMServer.conSimulaServidor
-    Left = 72
+    RemoteServer = pconServer
+    Left = 128
     Top = 104
     object cdsEMPLOYEEEMP_NO: TSmallintField
       FieldName = 'EMP_NO'
@@ -81,8 +81,28 @@ object DMClient: TDMClient
         ParamType = ptInput
       end>
     ProviderName = 'dspAUX'
-    RemoteServer = DMServer.conSimulaServidor
-    Left = 72
+    RemoteServer = pconServer
+    Left = 128
     Top = 40
+  end
+  object conServer: TSQLConnection
+    DriverName = 'DataSnap'
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverUnit=Data.DbxDatasnap'
+      'HostName=localhost'
+      'Port=211'
+      'CommunicationProtocol=tcp/ip'
+      'DatasnapContext=datasnap/')
+    Connected = True
+    Left = 48
+    Top = 40
+  end
+  object pconServer: TDSProviderConnection
+    ServerClassName = 'TDMServer'
+    Connected = True
+    SQLConnection = conServer
+    Left = 48
+    Top = 104
   end
 end

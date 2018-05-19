@@ -163,8 +163,4 @@ object DMServer: TDMServer
       Size = 2
     end
   end
-  object conSimulaServidor: TLocalConnection
-    Left = 344
-    Top = 104
-  end
 end
